@@ -1,0 +1,14 @@
+INDEX VERSION 1.134+C:\Spring-Microservices-Mini-Project\.metadata\.plugins\org.eclipse.jdt.core
+1811296103.index
+2937654012.index
+1893643891.index
+3551084605.index
+1865797976.index
+2409353559.index
+378700013.index
+3379084505.index
+1318132914.index
+3577123837.index
+1505257782.index
+477872317.index
+2599786230.index

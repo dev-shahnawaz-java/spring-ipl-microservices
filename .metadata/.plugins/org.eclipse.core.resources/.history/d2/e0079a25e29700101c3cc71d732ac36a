@@ -1,0 +1,8 @@
+spring.application.name=MiniProject-EurekaServer
+
+#server port number
+server.port=8761
+
+#Registration details
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=false

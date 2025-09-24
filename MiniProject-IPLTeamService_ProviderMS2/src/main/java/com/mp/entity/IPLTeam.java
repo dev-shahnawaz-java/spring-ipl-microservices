@@ -1,0 +1,104 @@
+package com.mp.entity;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.Version;
+import org.springframework.lang.NonNull;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+
+@Entity
+@Data
+@Table(name="IPLTeam")
+@RequiredArgsConstructor
+@AllArgsConstructor
+
+public class IPLTeam implements Serializable {
+	
+	@Id
+	 @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "iplteam_seq")
+    @SequenceGenerator(name = "iplteam_seq", sequenceName = "IPLTEAM_SEQ", allocationSize = 1)
+	private Integer teamid;
+	
+	@NonNull
+	@Column(length=30)
+	private String teamname;
+	
+	@NonNull
+	@Column(length=30)
+	private String owner;
+	
+	@NonNull
+	@Column(length=30)
+	private String area;
+	
+
+	//metadata properties
+	@Version
+	private Integer updateCount;
+		
+	@CreationTimestamp
+	@Column(updatable=false)
+	private LocalDateTime createdOn;
+	
+	@UpdateTimestamp
+	@Column(insertable=false)
+	private LocalDateTime lastUpdateOn;
+	
+	@Column(length=30,updatable=false)
+	private String createdBy;
+	
+	@Column(length=30,insertable=false)
+	private String updatedBy;
+	
+	
+	public IPLTeam() {
+		System.out.println("IPLTeam.IPLTeam()");
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,5 @@
+package com.mp.client;
+
+public interface IPLTeamServiceMSClient {
+
+}

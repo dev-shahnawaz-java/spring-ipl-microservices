@@ -1,0 +1,96 @@
+package com.mp.ms;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mp.service.IPLTeamMgmtService;
+import com.mp.vo.IPLTeamVO;
+
+import lombok.extern.slf4j.Slf4j;
+
+@RestController
+@RequestMapping("/team-api")
+@Slf4j  // give Logger obj having name log
+public class IPLTeamOperationCOntroller {
+	
+	@Autowired
+	private IPLTeamMgmtService teamService;
+	
+	@PostMapping("/register")
+	public ResponseEntity<String> registerTeam(@RequestBody IPLTeamVO teamVO) throws Exception{
+		
+		//user service
+		
+		String resultMsg = teamService.registerIPLTeam(teamVO);
+		log.info("register team method -- RestController");
+		
+		return new ResponseEntity<String>(resultMsg, HttpStatus.OK);
+		
+	}//method
+	
+	
+	@GetMapping("/")
+	public ResponseEntity<List<IPLTeamVO>> showAllTeams() throws Exception{
+		
+		//use service
+		
+		List<IPLTeamVO> list = teamService.getAllTeams();
+		log.info("Shows all teams method() -- rest controller");
+		
+		return new ResponseEntity<List<IPLTeamVO>>(list, HttpStatus.OK);
+		
+	}//method
+	
+	@GetMapping("/find/{id}")
+	public ResponseEntity<IPLTeamVO> showTeamById(@PathVariable int id ) throws Exception{
+		
+		IPLTeamVO teamVO = teamService.getTeamById(id);
+		
+		return new ResponseEntity<IPLTeamVO>(teamVO,HttpStatus.OK);
+	}
+	
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

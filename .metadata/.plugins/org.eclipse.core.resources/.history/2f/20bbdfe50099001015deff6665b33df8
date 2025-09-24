@@ -1,0 +1,98 @@
+package com.mp.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mp.advice.TeamNotFoundException;
+import com.mp.entity.IPLTeam;
+import com.mp.repository.IPLTeamRepository;
+import com.mp.vo.IPLTeamVO;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Service("IPLTeamService")
+@Slf4j
+public class IPLTeamMgmtServiceImp implements IPLTeamMgmtService {
+
+	@Autowired
+	private IPLTeamRepository teamRepo;
+	
+	
+	@Override
+	public String registerIPLTeam(IPLTeamVO teamVO) {
+		log.debug("COnverting VO to Entity");
+		IPLTeam teamEntity = new IPLTeam();
+		teamEntity.setCreatedBy(System.getProperty("user.name"));
+		BeanUtils.copyProperties(teamVO, teamEntity);
+		log.info("reguster iplteam method service");
+		int idVal= teamRepo.save(teamEntity).getTeamid();
+		
+		
+		return "IPLTeam is saved with id value: "+ idVal;
+	}
+ 
+	@Override
+	public List<IPLTeamVO> getAllTeams() {
+		log.info("get allTeams method(service)");
+		Iterable<IPLTeam> listEntities =teamRepo.findAll();
+		log.debug("Converting list of entities to list VOs");
+		
+		List<IPLTeamVO> listVO = new ArrayList<IPLTeamVO>();
+		listEntities.forEach(entity ->{
+			IPLTeamVO teamVO = new IPLTeamVO();
+			BeanUtils.copyProperties(entity,teamVO);
+			listVO.add(teamVO);
+		});
+		return listVO;
+	}
+
+	@Override
+	public IPLTeamVO getTeamById(int teamid) throws Exception {
+		log.info("getTeamById(-) method(service)");
+		IPLTeam entity = teamRepo.findById(teamid).orElseThrow(()->new TeamNotFoundException("Invalid team ID"));
+		log.debug("converting entity object to VO obj");
+		IPLTeamVO teamVO = new IPLTeamVO();
+		BeanUtils.copyProperties(entity, teamVO);
+		
+      return teamVO;
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

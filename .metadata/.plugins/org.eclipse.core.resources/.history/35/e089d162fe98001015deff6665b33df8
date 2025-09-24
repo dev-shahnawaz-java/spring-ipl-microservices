@@ -1,0 +1,13 @@
+package com.mp.client;
+
+import com.mp.vo.IPLTeamVO;
+
+public class IPLTeamServiceFallback implements IPLTeamServiceMSClient {
+
+	@Override
+	public IPLTeamVO getTeamById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

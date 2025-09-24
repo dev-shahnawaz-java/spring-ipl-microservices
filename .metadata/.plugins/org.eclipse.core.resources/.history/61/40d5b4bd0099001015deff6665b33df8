@@ -1,0 +1,18 @@
+package com.mp.client;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.mp.vo.IPLTeamVO;
+
+@FeignClient(
+    name = "IPLTEAM-SERVICE",
+   
+    fallback = IPLTeamServiceFallback.class
+)
+public interface IPLTeamServiceMSClient {
+
+    @GetMapping("/team-api/find/{id}")
+    public IPLTeamVO getTeamById(@PathVariable("id") int id);
+}

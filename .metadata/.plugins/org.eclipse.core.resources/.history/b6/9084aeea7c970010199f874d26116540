@@ -1,0 +1,27 @@
+package com.mp.service;
+
+import java.util.List;
+
+import com.mp.vo.IPLTeamVO;
+
+public class IPLTeamMgmtServiceImp implements IPLTeamMgmtService {
+
+	@Override
+	public String registerIPLTeam(IPLTeamVO teamVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<IPLTeamVO> getAllTeams() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IPLTeamVO getTeamById(int teamid) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,26 @@
+package com.mp.client;
+
+import org.springframework.stereotype.Component;
+
+import com.mp.vo.IPLTeamVO;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Component
+@Slf4j
+public class IPLTeamServiceFallback implements IPLTeamServiceMSClient {
+
+    @Override
+    public IPLTeamVO getTeamById(int id) {
+        log.error("Fallback method called: IPLTEAM-SERVICE is unavailable for team ID: {}", id);
+        
+        // Return a default team or null based on your business logic
+        IPLTeamVO fallbackTeam = new IPLTeamVO();
+        fallbackTeam.setTeamid(id);
+        fallbackTeam.setTeamname("Service Unavailable");
+        fallbackTeam.setOwner("N/A");
+        fallbackTeam.setArea("N/A");
+        
+        return fallbackTeam;
+    }
+}

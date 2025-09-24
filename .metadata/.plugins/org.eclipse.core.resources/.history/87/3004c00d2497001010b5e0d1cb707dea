@@ -1,0 +1,7 @@
+spring.application.name=MiniProject-ConfigServer
+
+#Server port
+server.port=8888
+
+#Provide link to GitHub user account
+spring.cloud.config.server.git.uri=https://github.com/Shahnawaz-developer/MicroservicesRepo/edit/main/application.properties
